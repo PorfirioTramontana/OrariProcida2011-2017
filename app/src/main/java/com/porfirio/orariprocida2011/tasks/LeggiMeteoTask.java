@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.porfirio.orariprocida2011.R;
+import com.porfirio.orariprocida2011.TaskTestUtility;
 import com.porfirio.orariprocida2011.activities.OrariProcida2011Activity;
 
 import org.json.JSONException;
@@ -25,7 +26,6 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -35,8 +35,7 @@ import java.util.concurrent.TimeUnit;
 public class LeggiMeteoTask extends AsyncTask<Void, Integer, Boolean> {
     private final OrariProcida2011Activity act;
 
-    public static Semaphore taskMeteo;
-    public static Semaphore taskMeteoStart;
+    public static Semaphore[] sem = new Semaphore[2];
 
     public LeggiMeteoTask(OrariProcida2011Activity orariProcida2011Activity) {
         this.act = orariProcida2011Activity;
@@ -44,17 +43,7 @@ public class LeggiMeteoTask extends AsyncTask<Void, Integer, Boolean> {
 
     // Do the long-running work in here
     protected Boolean doInBackground(Void... param) {
-        //act = activities[0];
-        if (taskMeteoStart != null) {
-            try {
-                taskMeteoStart.acquire();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Log.d("TEST", "TASK: Inizia il task meteo");
-            taskMeteoStart.release();
-        }
-
+        TaskTestUtility.startTask(sem);
         /* Create a URL we want to load some xml-data from. */
         URL url;
         Double windKmhFromIS = 0.0;
@@ -234,21 +223,7 @@ public class LeggiMeteoTask extends AsyncTask<Void, Integer, Boolean> {
             }
 */
 
-        if (taskMeteo != null) {
-            Log.d("TEST", "TASK: Il task meteo pronto a terminare");
-
-            try {
-                if (!taskMeteo.tryAcquire(20L, TimeUnit.SECONDS))
-                    Log.d("TEST", "TASK: TIMEOUT task meteo ");
-                //act.finish();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            Log.d("TEST", "TASK: Il task meteo termina");
-            taskMeteo.release();
-            Log.d("ORDER", "Meteo task");
-        }
+        TaskTestUtility.finishTask(sem);
         return true;
     }
 

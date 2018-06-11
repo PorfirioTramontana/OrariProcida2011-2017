@@ -1,55 +1,22 @@
 package com.porfirio.orariprocida2011.activities;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.RemoteException;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.SdkSuppress;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
-import android.support.test.uiautomator.Until;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import com.porfirio.orariprocida2011.tasks.DownloadMezziTask;
-import com.porfirio.orariprocida2011.tasks.LeggiMeteoTask;
-import com.porfirio.orariprocida2011.tasks.LeggiSegnalazioniTask;
-import com.porfirio.orariprocida2011.test.TestSuiteAS;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.concurrent.Semaphore;
-
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = 18)
-public class UIAutomatorAsyncTaskTestSemaphore {
+public class OldUIAutomatorAsyncTaskTestSemaphore {
 
     private static final String BASIC_SAMPLE_PACKAGE
             = "com.porfirio.orariprocida2011";
@@ -79,29 +46,9 @@ public class UIAutomatorAsyncTaskTestSemaphore {
 
     @BeforeClass
     public static void setTestValues() {
-        //TODO Leggere i valori dei delay da file
-        TestSuiteAS.addTest(0);
-        TestSuiteAS.setDelay(DownloadMezziTask.class.toString(), 10000);
-        TestSuiteAS.setDelay(LeggiSegnalazioniTask.class.toString(), 2000);
-        TestSuiteAS.setDelay(LeggiMeteoTask.class.toString(), 3000);
-        TestSuiteAS.addTest(1);
-        TestSuiteAS.setDelay(DownloadMezziTask.class.toString(), 10000);
-        TestSuiteAS.setDelay(LeggiSegnalazioniTask.class.toString(), 2000);
-        TestSuiteAS.setDelay(LeggiMeteoTask.class.toString(), 1000);
-        TestSuiteAS.testNumber = -1;
-        return;
     }
 
-
-    @Before
-    public void startMainActivityFromHomeScreen() throws InterruptedException {
-
-
-        //QUI SETTO IL NUMERO DEL TEST
-        //TestSuiteAS.testNumber++;
-
-    }
-
+/*
     @Test
     public void PrimoTest() throws InterruptedException {
         // SEQUENZA UI->TASK1->TASK2
@@ -119,6 +66,7 @@ public class UIAutomatorAsyncTaskTestSemaphore {
         // COMMENTI: Il comportamento di questo test è analogo a PrimoTest_2
 
         // Definisco i semafori, uno per ogni task, eventualmente settando il numero di task possibili
+
         DownloadMezziTask.taskDownload = new Semaphore(1);
         DownloadMezziTask.taskDownloadStart = new Semaphore(1);
         LeggiMeteoTask.taskMeteo = new Semaphore(1);
@@ -1732,5 +1680,5 @@ public class UIAutomatorAsyncTaskTestSemaphore {
     }
 
 
-
+*/
 }

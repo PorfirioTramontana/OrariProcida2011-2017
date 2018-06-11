@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.porfirio.orariprocida2011.R;
+import com.porfirio.orariprocida2011.TaskTestUtility;
 import com.porfirio.orariprocida2011.activities.OrariProcida2011Activity;
 import com.porfirio.orariprocida2011.entity.Mezzo;
 
@@ -22,7 +23,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
+
+import static com.porfirio.orariprocida2011.TaskTestUtility.finishTask;
 
 /**
  * Created by Porfirio on 16/02/2018.
@@ -33,8 +35,8 @@ public class DownloadMezziTask extends AsyncTask<Void, Integer, Boolean> {
     //int delay = 0;
 
     //dichiarazione del semaforo
-    public static Semaphore taskDownload;
-    public static Semaphore taskDownloadStart;
+    public static Semaphore[] sem = new Semaphore[2];
+
 
     public DownloadMezziTask(OrariProcida2011Activity orariProcida2011Activity) {
         act = orariProcida2011Activity;
@@ -46,15 +48,7 @@ public class DownloadMezziTask extends AsyncTask<Void, Integer, Boolean> {
 
     // Do the long-running work in here
     protected Boolean doInBackground(Void... params) {
-        if (taskDownloadStart != null) {
-            try {
-                taskDownloadStart.acquire();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Log.d("TEST", "TASK: Inizia il task download");
-            taskDownloadStart.release();
-        }
+        TaskTestUtility.startTask(sem);
 /*
         if (delay > 0 || true) {
             Log.d("TEST", "Started Delay a " + System.currentTimeMillis() % 100000);
@@ -108,20 +102,7 @@ public class DownloadMezziTask extends AsyncTask<Void, Integer, Boolean> {
                 //Wait prima della terminazione del task
                 Log.d("TEST", "TASK: Il task download pronto a terminare");
 
-                if (taskDownload != null) {
-                    try {
-                        if (!taskDownload.tryAcquire(15L, TimeUnit.SECONDS)) {
-                            Log.d("TEST", "TASK: TIMEOUT task download");
-                            act.finish();
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    Log.d("TEST", "TASK: Finisce il task download");
-                    taskDownload.release();
-                    Log.d("ORDER", "Download task");
-                }
+                finishTask(sem);
                 return false;
             }
             else {
@@ -192,24 +173,7 @@ public class DownloadMezziTask extends AsyncTask<Void, Integer, Boolean> {
             e.printStackTrace();
         }
 
-        if (taskDownload != null) {
-            //Wait prima della terminazione del task
-            Log.d("TEST", "TASK: Il task download è pronto a terminare");
-
-            try {
-                if (!taskDownload.tryAcquire(15L, TimeUnit.SECONDS)) {
-                    Log.d("TEST", "TASK: TIMEOUT task download");
-                    act.finish();
-                }
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            Log.d("TEST", "TASK: Finisce il task download");
-            taskDownload.release();
-            Log.d("ORDER", "Download task");
-        }
+        finishTask(sem);
         return true;
     }
 
