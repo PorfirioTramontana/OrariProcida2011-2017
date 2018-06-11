@@ -1132,12 +1132,13 @@ public class OrariProcida2011Activity extends FragmentActivity {
 	}
 	protected void onStart(){
 		super.onStart();
+        Log.d("TEST", "onStart");
 
 	}
     
     protected void onRestart(){
     	super.onRestart();
-    	Log.d("ACTIVITY","restart");
+        Log.d("TEST", "onRestart");
     }
 
     protected void onResume(){
@@ -1157,22 +1158,23 @@ public class OrariProcida2011Activity extends FragmentActivity {
 //        getBaseContext().getResources().getDisplayMetrics());
 //    }
 
-    	Log.d("ACTIVITY","resume");
+        Log.d("TEST", "onResume");
     }
 
     protected void onPause(){
     	super.onPause();
-    	Log.d("ACTIVITY","pause");
+        Log.d("TEST", "onPause");
     }
 
     protected void onStop(){
     	super.onStop();
+        Log.d("TEST", "onStop");
     }
 
 
     protected void onDestroy(){
     	super.onDestroy();
-    	Log.d("ACTIVITY","destroy");
+        Log.d("TEST", "onDestroy");
     }
 
 

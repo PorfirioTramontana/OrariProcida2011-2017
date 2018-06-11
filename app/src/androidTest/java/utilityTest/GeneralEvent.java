@@ -150,4 +150,50 @@ public class GeneralEvent {
         releaseSemaphore(sem[FINISH]);
     }
 
+    public static void rotateLeft() {
+        try {
+            Thread.sleep(TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            mDevice.setOrientationLeft();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        Log.d("TEST", "RotateToLeft");
+    }
+
+    public static void rotateRight() {
+        try {
+            Thread.sleep(TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            mDevice.setOrientationRight();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        Log.d("TEST", "RotateToRight");
+    }
+
+    public static void rotatetoNatural() {
+        try {
+            Thread.sleep(TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            mDevice.setOrientationNatural();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        Log.d("TEST", "RotateToNatural");
+    }
+
+    public static void doubleRotation() {
+        rotateLeft();
+        rotatetoNatural();
+    }
 }
