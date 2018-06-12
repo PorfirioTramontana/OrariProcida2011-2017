@@ -6,7 +6,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.porfirio.orariprocida2011.R;
-import com.porfirio.orariprocida2011.TaskTestUtility;
 import com.porfirio.orariprocida2011.activities.OrariProcida2011Activity;
 import com.porfirio.orariprocida2011.entity.Mezzo;
 
@@ -24,7 +23,9 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.concurrent.Semaphore;
 
-import static com.porfirio.orariprocida2011.TaskTestUtility.finishTask;
+import it.unina.ptramont.TaskTestUtility;
+
+import static it.unina.ptramont.TaskTestUtility.finishTask;
 
 /**
  * Created by Porfirio on 16/02/2018.

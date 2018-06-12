@@ -13,8 +13,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import utilityTest.GeneralEvent;
-import utilityTest.SpecificUIEvent;
+import it.unina.ptramont.utilityTest.GeneralEvent;
+import it.unina.ptramont.utilityTest.SpecificUIEvent;
 
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = 18)

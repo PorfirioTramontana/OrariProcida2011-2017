@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.porfirio.orariprocida2011.R;
-import com.porfirio.orariprocida2011.TaskTestUtility;
 import com.porfirio.orariprocida2011.activities.OrariProcida2011Activity;
 
 import org.json.JSONException;
@@ -26,6 +25,8 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.concurrent.Semaphore;
+
+import it.unina.ptramont.TaskTestUtility;
 
 
 /**
