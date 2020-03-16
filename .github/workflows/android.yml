@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ AsyncTask ]
   pull_request:
-    branches: [ master ]
+    branches: [ AsyncTask ]
 
 env:
   BUILD_TOOLS_VERSION: 29.0.3
